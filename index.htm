@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <!---------ADD ICON TO TITLE-->
+    
+    <!-- إضافة مكتبة Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <p id="searcher"></p>
+    <form class="search" > 
+        <input type="text" id="search" placeholder="Search...">
+        <input type="button" value="search">
+    </form>
+    <div class="social">
+        <a id="social"><i class="fa-brands fa-facebook"></i></a> 
+        <a id="social"><i class="fa-brands fa-instagram"></i></a>
+        <a id="social"><i class="fa-brands fa-twitter"></i></a>
+        <a id="social"><i class="fa-brands fa-github"></i></a>
+        <a id="social"><i class="fa-brands fa-linkedin"></i></a>
+        <a id="social"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+    <script>
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "firebase/app";
+        import { getAnalytics } from "firebase/analytics";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyB-RLrSy6B-VhBDqsXXJaOYmQHuzmNIAxQ",
+        authDomain: "searcher-41c45.firebaseapp.com",
+        projectId: "searcher-41c45",
+        storageBucket: "searcher-41c45.firebasestorage.app",
+        messagingSenderId: "768785881455",
+        appId: "1:768785881455:web:c5edff25d578a8b645f09a",
+        measurementId: "G-28D0L5PKCL"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    <script>
+        const socialLinks = document.querySelectorAll("#social");
+        const socialIcons = [
+            "https://www.facebook.com",
+            "https://www.instagram.com",
+            "https://twitter.com",
+            "https://github.com",
+            "https://www.linkedin.com",
+            "https://www.youtube.com"
+        ];
+        socialLinks.forEach((link, index) => {
+            link.addEventListener("click", function() {
+                window.open(socialIcons[index], "_blank");
+            });
+        });
+        const search = document.getElementById("search");
+        const button = document.querySelector("input[type='button']");
+        const searcher = document.getElementById("searcher");
+        button.addEventListener("click", function() {
+            const item = search.value;
+            if (item == "") {
+                alert("                      ⚠⚠ Please enter a search term. ⚠⚠");
+            } else {
+                window.open("https://www.google.com/search?q=" + encodeURIComponent(item), "_blank");
+                search.value = ""; // Clear the input field after search
+            }
+        });
+        search.style.borderRadius = "20px";
+        search.style.width = "100%";
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* ترتيب العناصر عموديًا */
+            background-image: url("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+            backdrop-filter: blur(2.5px);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: #00ffff 0px 0px 20px;
+            width: 45%;
+            padding: 8px;
+            border-radius: 20px;
+            background-color: rgb(0, 208, 255);
+            backdrop-filter: blur(2px);
+            margin-bottom: 20px; /* مسافة بين مربع البحث والأيقونات */
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* مسافة بين الأيقونات */
+        }
+
+        .social a {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            border: #00eeff solid 2px;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .social a:hover {
+            text-shadow: #4CAF50 0px 0px 20px;
+            box-shadow: #00eeff 0px 0px 20px;
+        }
+
+        .social a i {
+            font-size: 30px;
+        }
+        .social a:hover i {
+            color: #000000;
+            text-shadow: #ffffff 0px 0px 20px;
+            scale:0.9px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+        }
+
+        input[type="text"]::placeholder {
+            color: #ccc;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #000000;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            padding: 10px 20px;
+            border: none;
+            box-shadow: #00eeff 0px 0px 20px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>
